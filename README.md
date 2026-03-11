@@ -1,4 +1,5 @@
 
+
 # movie_app
 
 
@@ -37,4 +38,55 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+
+
+# movie_app
+
+A new Flutter project.
+
+
+# Flutter Movie App
+
+This is a simple Flutter application that displays popular movies using The Movie Database API.
+
+## State Management
+
+This project uses **Provider** for state management.
+
+Provider was chosen because:
+- It is lightweight
+- Easy to understand
+- Officially recommended for Flutter apps
+
+## Features
+
+- View popular movies
+- Search movies by title
+- View movie details
+- Error handling
+- Clean architecture
+
+## How to Run
+
+1. Clone repository
+
+git clone https://github.com/tharinduhccakalanka/movie_app.git
+
+2. Install dependencies
+
+flutter pub get
+
+3. Add TMDB API key in:
+
+services/movie_service.dart
+
+4. Run
+
+flutter run
+
+## Future Improvements
+
+- Favorites list
+- Better UI
+- Login & Registration 
 

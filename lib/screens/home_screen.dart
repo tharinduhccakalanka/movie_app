@@ -25,7 +25,9 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Popular Movies'), centerTitle: true),
+      backgroundColor: Colors.blueGrey[200],
+      appBar: AppBar(  toolbarHeight: 80,  title: const Text('Popular Movies',style: TextStyle(fontWeight: FontWeight.bold,),),centerTitle: true),
+   
       body: Consumer<MovieProvider>(
         builder: (context, provider, child) {
           if (provider.isLoading) {
@@ -42,7 +44,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     textAlign: TextAlign.center,
                     style: const TextStyle(color: Colors.white70, fontSize: 18),
                   ),
-                  const SizedBox(height: 24),
+                  const SizedBox(height: 20),
                   ElevatedButton(
                     onPressed: () => provider.fetchPopularMovies(),
                     child: const Text('Retry'),
@@ -67,11 +69,12 @@ class _HomeScreenState extends State<HomeScreen> {
             children: [
               SearchBarWidget(
                 onSearch: (value) {
-                  if (value.trim().isEmpty) {
-                    provider.clearSearch();
-                  } else {
-                    provider.search(value);
-                  }
+              final trimmed = value.trim();
+              if (trimmed.isEmpty) {
+                context.read<MovieProvider>().clearSearch();
+              } else {
+                context.read<MovieProvider>().search(trimmed);
+              }
                 },
               ),
               Expanded(

@@ -1,27 +1,38 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 class SearchBarWidget extends StatefulWidget {
   final ValueChanged<String> onSearch;
+  
 
   const SearchBarWidget({super.key, required this.onSearch});
 
   @override
   State<SearchBarWidget> createState() => _SearchBarWidgetState();
 }
-
 class _SearchBarWidgetState extends State<SearchBarWidget> {
   final _controller = TextEditingController();
+  Timer? _debounce;
 
   @override
   void dispose() {
+    _debounce?.cancel();
     _controller.dispose();
     super.dispose();
+  }
+
+  void _onSearchChanged(String value) {
+    _debounce?.cancel();
+    _debounce = Timer(const Duration(milliseconds: 400), () {
+      widget.onSearch(value);
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(16, 8, 16, 12),
+      padding: const EdgeInsets.fromLTRB(36, 42, 36, 30),
       child: TextField(
         controller: _controller,
         style: const TextStyle(color: Colors.white),
@@ -44,7 +55,7 @@ class _SearchBarWidgetState extends State<SearchBarWidget> {
           ),
           contentPadding: const EdgeInsets.symmetric(vertical: 4),
         ),
-        onChanged: widget.onSearch,
+        onChanged: _onSearchChanged, 
       ),
     );
   }

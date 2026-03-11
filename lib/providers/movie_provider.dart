@@ -33,19 +33,24 @@ class MovieProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> search(String query) async {
-    if (query.trim().isEmpty) {
-      _filteredMovies = [];
-      notifyListeners();
-      return;
-    }
+ Future<void> search(String query) async {
+  if (query.trim().isEmpty) {
+    _filteredMovies = [];
+    _errorMessage = null;
+    notifyListeners();
+    return;
+  }
 
     _isLoading = true;
     notifyListeners();
 
     try {
-      _filteredMovies = await _service.searchMovies(query);
-      _errorMessage = _filteredMovies.isEmpty ? 'No movies found' : null;
+      _filteredMovies = _movies
+      .where((movie) =>
+          movie.title.toLowerCase().contains(query.toLowerCase()))
+      .toList();
+  _errorMessage = _filteredMovies.isEmpty ? 'No movies found' : null;
+  notifyListeners();
     } catch (e) {
       _errorMessage = 'Search failed. Please try again.';
     }

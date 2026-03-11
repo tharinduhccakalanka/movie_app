@@ -55,7 +55,7 @@ class MovieDetailScreen extends StatelessWidget {
                           ),
                         ),
                       ),
-                      const SizedBox(width: 16),
+                      const SizedBox(width: 18),
                       Expanded(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -63,15 +63,16 @@ class MovieDetailScreen extends StatelessWidget {
                             Text(
                               movie.title,
                               style: const TextStyle(
-                                fontSize: 26,
+                                fontSize: 28,
                                 fontWeight: FontWeight.bold,
+                                color: Color.fromARGB(255, 180, 169, 87),
                               ),
                             ),
                             const SizedBox(height: 8),
                             Text(
                              movie.releaseDate?.substring(0,4) ?? "Unknown",
                               style: TextStyle(
-                                fontSize: 18,
+                                fontSize: 15,
                                 color: Colors.grey[400],
                               ),
                             ),
@@ -85,6 +86,7 @@ class MovieDetailScreen extends StatelessWidget {
                                   style: const TextStyle(
                                     fontSize: 22,
                                     fontWeight: FontWeight.w600,
+                                    color: Colors.grey,
                                   ),
                                 ),
                               ],
@@ -97,13 +99,14 @@ class MovieDetailScreen extends StatelessWidget {
                   const SizedBox(height: 24),
                   const Text(
                     'Overview',
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    style: TextStyle(color: Colors.grey, fontSize: 25, fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(height: 12),
                   Text(
                     movie.overview?.isNotEmpty == true
                         ? movie.overview!
                         : 'No description available.',
+                   textAlign: TextAlign.justify,
                     style: TextStyle(
                       fontSize: 16,
                       color: Colors.grey[300],
